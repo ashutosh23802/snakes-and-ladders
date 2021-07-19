@@ -1,6 +1,4 @@
-public class Dice {
+public interface Dice {
 
-    public int throwDice() {
-        return (int)(Math.random()*6 )+1 ;
-    }
+    int throwDice();
 }
