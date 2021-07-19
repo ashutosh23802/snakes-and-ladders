@@ -10,21 +10,29 @@ import static org.junit.jupiter.api.Assertions.*;
 class BoardTest {
 
     Board board;
-    Player playerMock;
-    Dice diceMock;
+    Player playerSpy;
+    Dice diceSpy;
 
     @BeforeEach
     public void setup(){
-        playerMock = Mockito.spy(Player.class);
-        diceMock = Mockito.spy(Dice.class);
-        board = new Board(100,playerMock,diceMock);
+        playerSpy = Mockito.spy(Player.class);
+        diceSpy = Mockito.spy(Dice.class);
+        board = new Board(100, playerSpy, diceSpy);
     }
 
     @Test
     public void playerShouldMoveToPositionBasedOnDiceThrow(){
-        Mockito.when(diceMock.throwDice()).thenReturn(4);
+        Mockito.when(diceSpy.throwDice()).thenReturn(4);
         board.movePlayer();
         assertEquals(4,board.getPlayer().getPosition());
+    }
+
+    @Test
+    public void shouldNotSetPLayerPositionBeyond100(){
+        Mockito.when(diceSpy.throwDice()).thenReturn(4);
+        playerSpy.setPosition(99);
+        board.movePlayer();
+        assertEquals(99,board.getPlayer().getPosition());
     }
 
 }

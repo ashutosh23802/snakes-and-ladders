@@ -19,6 +19,7 @@ public class Board {
     }
 
     public void movePlayer() {
-        player.setPosition(player.getPosition() + dice.throwDice());
+        int finalPositionToSet = player.getPosition() + dice.throwDice() > size ? player.getPosition() : player.getPosition() + dice.throwDice();
+        player.setPosition(finalPositionToSet);
     }
 }
