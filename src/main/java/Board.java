@@ -7,7 +7,7 @@ public class Board {
     private Dice dice;
     private Map<Integer,Integer> snakes;
 
-    public Board(int size, Player player,Dice dice,Map<Integer,Integer> snakes) {
+    public Board(int size, Player player, Dice dice, Map<Integer,Integer> snakes) {
         this.size = size;
         this.player = player;
         this.dice = dice;
@@ -23,10 +23,17 @@ public class Board {
     }
 
     public void movePlayer() {
-        int finalPositionToSet = player.getPosition() + dice.throwDice() > size ? player.getPosition() : player.getPosition() + dice.throwDice();
+        System.out.println("++++++++++++++++++");
+        System.out.println("Player position was:"+ player.getPosition());
+        int generatedNumber = dice.throwDice();
+        System.out.println("Dice generated:"+generatedNumber);
+        int finalPositionToSet = player.getPosition() + generatedNumber > size ? player.getPosition() : player.getPosition() + generatedNumber;
         if(snakes.containsKey(finalPositionToSet)){
+            System.out.println("=====SNAKE BITE=====");
             finalPositionToSet = snakes.get(finalPositionToSet);
         }
         player.setPosition(finalPositionToSet);
+        System.out.println("Player position set to:"+ player.getPosition());
+        System.out.println("++++++++++++++++++");
     }
 }

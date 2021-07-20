@@ -18,7 +18,7 @@ class BoardTest {
     @BeforeEach
     public void setup(){
         playerSpy = Mockito.spy(Player.class);
-        diceSpy = Mockito.spy(Dice.class);
+        diceSpy = Mockito.spy(RegularDice.class);
         board = new Board(100, playerSpy, diceSpy,Map.of(14,7));
     }
 
